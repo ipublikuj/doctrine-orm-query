@@ -16,12 +16,13 @@ declare(strict_types = 1);
 
 namespace IPub\DoctrineOrmQuery\Exceptions;
 
+use RuntimeException;
 use Exception;
 use Throwable;
 
 use Doctrine\ORM;
 
-class QueryException extends \RuntimeException implements IException
+class QueryException extends RuntimeException implements IException
 {
 	/**
 	 * @var ORM\AbstractQuery|NULL

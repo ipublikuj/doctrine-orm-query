@@ -16,6 +16,8 @@ declare(strict_types = 1);
 
 namespace IPub\DoctrineOrmQuery;
 
+use Exception;
+
 use Doctrine;
 use Doctrine\ORM;
 
@@ -86,8 +88,9 @@ abstract class QueryObject
 	 * @param DoctrineOrmQuery\ResultSet $resultSet
 	 * @param ORM\Tools\Pagination\Paginator $paginatedQuery
 	 *
-	 * @return integer
+	 * @return int
 	 *
+	 * @throws ORM\NoResultException
 	 * @throws ORM\NonUniqueResultException
 	 */
 	public function count(
@@ -134,7 +137,7 @@ abstract class QueryObject
 				? $query->execute(NULL, $hydrationMode)
 				: $this->lastResult;
 
-		} catch (\Exception $ex) {
+		} catch (Exception $ex) {
 			throw new Exceptions\QueryException(
 				$ex,
 				$this->getLastQuery(),
@@ -170,7 +173,7 @@ abstract class QueryObject
 		} catch (ORM\NonUniqueResultException $ex) { // this should never happen!
 			throw new Exceptions\InvalidStateException("You have to setup your query calling ->setMaxResult(1).", 0, $ex);
 
-		} catch (\Exception $ex) {
+		} catch (Exception $ex) {
 			throw new Exceptions\QueryException(
 				$ex,
 				$this->getLastQuery(),

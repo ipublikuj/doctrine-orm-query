@@ -16,6 +16,8 @@ declare(strict_types = 1);
 
 namespace IPub\DoctrineOrmQuery\Exceptions;
 
-class InvalidStateException extends \RuntimeException implements IException
+use RuntimeException;
+
+class InvalidStateException extends RuntimeException implements IException
 {
 }

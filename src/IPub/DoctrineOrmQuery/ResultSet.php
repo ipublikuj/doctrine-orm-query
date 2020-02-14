@@ -19,6 +19,7 @@ namespace IPub\DoctrineOrmQuery;
 use ArrayIterator;
 use Countable;
 use IteratorAggregate;
+use Exception;
 
 use Doctrine\ORM;
 
@@ -306,7 +307,7 @@ final class ResultSet implements Countable, IteratorAggregate
 	 *
 	 * @return ArrayIterator
 	 *
-	 * @throws Exceptions\QueryException
+	 * @throws Exception
 	 */
 	public function getIterator(
 		int $hydrationMode = ORM\AbstractQuery::HYDRATE_OBJECT
@@ -335,7 +336,10 @@ final class ResultSet implements Countable, IteratorAggregate
 
 	/**
 	 * @param int $hydrationMode
+	 *
 	 * @return array
+	 *
+	 * @throws Exception
 	 */
 	public function toArray(
 		int $hydrationMode = ORM\AbstractQuery::HYDRATE_OBJECT
@@ -345,6 +349,8 @@ final class ResultSet implements Countable, IteratorAggregate
 
 	/**
 	 * @return int
+	 *
+	 * @throws Exception
 	 */
 	public function count() : int
 	{
