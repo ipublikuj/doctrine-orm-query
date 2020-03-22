@@ -99,11 +99,11 @@ abstract class QueryObject
 		ORM\Tools\Pagination\Paginator $paginatedQuery = NULL
 	) : int {
 		if ($query = $this->doCreateCountQuery($repository)) {
-			return $this->toQuery($query)->getSingleScalarResult();
+			return (int) $this->toQuery($query)->getSingleScalarResult();
 		}
 
 		if ($paginatedQuery !== NULL) {
-			return $paginatedQuery->count();
+			return (int) $paginatedQuery->count();
 		}
 
 		$query = $this->getQuery($repository)
@@ -113,7 +113,7 @@ abstract class QueryObject
 		$paginatedQuery = new ORM\Tools\Pagination\Paginator($query, ($resultSet !== NULL) ? $resultSet->getFetchJoinCollection() : TRUE);
 		$paginatedQuery->setUseOutputWalkers(($resultSet !== NULL) ? $resultSet->getUseOutputWalkers() : NULL);
 
-		return $paginatedQuery->count();
+		return (int) $paginatedQuery->count();
 	}
 
 	/**
