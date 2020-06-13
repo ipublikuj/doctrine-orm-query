@@ -19,6 +19,7 @@ namespace IPub\DoctrineOrmQuery;
 use Exception;
 
 use Doctrine;
+use Doctrine\Persistence;
 use Doctrine\ORM;
 
 use IPub\DoctrineOrmQuery;
@@ -84,7 +85,7 @@ abstract class QueryObject
 	private $lastResult;
 
 	/**
-	 * @param ORM\EntityRepository $repository
+	 * @param Persistence\ObjectRepository $repository
 	 * @param DoctrineOrmQuery\ResultSet $resultSet
 	 * @param ORM\Tools\Pagination\Paginator $paginatedQuery
 	 *
@@ -94,7 +95,7 @@ abstract class QueryObject
 	 * @throws ORM\NonUniqueResultException
 	 */
 	public function count(
-		ORM\EntityRepository $repository,
+		Persistence\ObjectRepository $repository,
 		DoctrineOrmQuery\ResultSet $resultSet = NULL,
 		ORM\Tools\Pagination\Paginator $paginatedQuery = NULL
 	) : int {
@@ -117,7 +118,7 @@ abstract class QueryObject
 	}
 
 	/**
-	 * @param ORM\EntityRepository $repository
+	 * @param Persistence\ObjectRepository $repository
 	 * @param int $hydrationMode
 	 *
 	 * @return DoctrineOrmQuery\ResultSet|array
@@ -125,7 +126,7 @@ abstract class QueryObject
 	 * @throws Exceptions\QueryException
 	 */
 	public function fetch(
-		ORM\EntityRepository $repository,
+		Persistence\ObjectRepository $repository,
 		int $hydrationMode = ORM\AbstractQuery::HYDRATE_OBJECT
 	) {
 		try {
@@ -147,7 +148,7 @@ abstract class QueryObject
 	}
 
 	/**
-	 * @param ORM\EntityRepository $repository
+	 * @param Persistence\ObjectRepository $repository
 	 *
 	 * @return object|NULL
 	 *
@@ -155,7 +156,7 @@ abstract class QueryObject
 	 * @throws Exceptions\QueryException
 	 */
 	public function fetchOne(
-		ORM\EntityRepository $repository
+		Persistence\ObjectRepository $repository
 	) {
 		try {
 			$query = $this->getQuery($repository)
@@ -213,11 +214,11 @@ abstract class QueryObject
 	}
 
 	/**
-	 * @param ORM\EntityRepository $repository
+	 * @param Persistence\ObjectRepository $repository
 	 *
 	 * @return ORM\Query
 	 */
-	private function getQuery(ORM\EntityRepository $repository) : ORM\Query
+	private function getQuery(Persistence\ObjectRepository $repository) : ORM\Query
 	{
 		$query = $this->toQuery($this->doCreateQuery($repository));
 
