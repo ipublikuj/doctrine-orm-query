@@ -82,7 +82,7 @@ abstract class BaseTestCase extends BaseMockeryTestCase
 	private function setupDatabase(): void
 	{
 		if (!$this->isDatabaseSetUp) {
-			/** @var DBAL\Connection $service */
+			/** @var DBAL\Connection $db */
 			$db = $this->container->getByType(DBAL\Connection::class);
 
 			$metadatas = $this->getEntityManager()->getMetadataFactory()->getAllMetadata();

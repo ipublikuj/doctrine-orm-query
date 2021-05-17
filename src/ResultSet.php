@@ -18,7 +18,6 @@ namespace IPub\DoctrineOrmQuery;
 use ArrayIterator;
 use Countable;
 use Doctrine\ORM;
-use Doctrine\Persistence;
 use Exception;
 use IteratorAggregate;
 use Nette\Utils;
@@ -70,11 +69,11 @@ final class ResultSet implements Countable, IteratorAggregate
 	private QueryObject $queryObject;
 
 	/**
-	 * @var Persistence\ObjectRepository
+	 * @var ORM\EntityRepository
 	 *
-	 * @phpstan-var Persistence\ObjectRepository<TEntityClass>
+	 * @phpstan-var ORM\EntityRepository<TEntityClass>
 	 */
-	private Persistence\ObjectRepository $repository;
+	private ORM\EntityRepository $repository;
 
 	/** @var bool */
 	private bool $fetchJoinCollection = true;
@@ -95,15 +94,15 @@ final class ResultSet implements Countable, IteratorAggregate
 	/**
 	 * @param ORM\AbstractQuery $query
 	 * @param QueryObject $queryObject
-	 * @param Persistence\ObjectRepository $repository
+	 * @param ORM\EntityRepository $repository
 	 *
 	 * @phpstan-param QueryObject<TEntityClass> $queryObject
-	 * @phpstan-param Persistence\ObjectRepository<TEntityClass> $repository
+	 * @phpstan-param ORM\EntityRepository<TEntityClass> $repository
 	 */
 	public function __construct(
 		ORM\AbstractQuery $query,
 		QueryObject $queryObject,
-		Persistence\ObjectRepository $repository
+		ORM\EntityRepository $repository
 	) {
 		$this->query = $query;
 		$this->queryObject = $queryObject;

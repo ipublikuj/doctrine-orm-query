@@ -18,7 +18,6 @@ namespace IPub\DoctrineOrmQuery;
 use Closure;
 use Doctrine;
 use Doctrine\ORM;
-use Doctrine\Persistence;
 use Nette;
 use Throwable;
 
@@ -77,7 +76,7 @@ abstract class QueryObject
 	private ResultSet $lastResult;
 
 	/**
-	 * @param Persistence\ObjectRepository $repository
+	 * @param ORM\EntityRepository $repository
 	 * @param ResultSet|null $resultSet
 	 * @param ORM\Tools\Pagination\Paginator|null $paginatedQuery
 	 *
@@ -86,12 +85,12 @@ abstract class QueryObject
 	 * @throws ORM\NoResultException
 	 * @throws ORM\NonUniqueResultException
 	 *
-	 * @phpstan-param Persistence\ObjectRepository<TEntityClass> $repository
+	 * @phpstan-param ORM\EntityRepository<TEntityClass> $repository
 	 * @phpstan-param ResultSet<TEntityClass>|null $resultSet
 	 * @phpstan-param ORM\Tools\Pagination\Paginator<TEntityClass>|null $paginatedQuery
 	 */
 	public function count(
-		Persistence\ObjectRepository $repository,
+		ORM\EntityRepository $repository,
 		?ResultSet $resultSet = null,
 		?ORM\Tools\Pagination\Paginator $paginatedQuery = null
 	): int {
@@ -119,15 +118,15 @@ abstract class QueryObject
 	}
 
 	/**
-	 * @param Persistence\ObjectRepository $repository
+	 * @param ORM\EntityRepository $repository
 	 *
 	 * @return ORM\QueryBuilder
 	 *
-	 * @phpstan-param Persistence\ObjectRepository<TEntityClass> $repository
+	 * @phpstan-param ORM\EntityRepository<TEntityClass> $repository
 	 */
 	// phpcs:disable Squiz.Commenting.FunctionComment.InvalidNoReturn
 	protected function doCreateCountQuery(
-		Persistence\ObjectRepository $repository
+		ORM\EntityRepository $repository
 	): ORM\QueryBuilder {
 		throw new Exceptions\NotImplementedException('Method doCreateCountQuery is not implemented');
 	}
@@ -145,13 +144,13 @@ abstract class QueryObject
 	}
 
 	/**
-	 * @param Persistence\ObjectRepository $repository
+	 * @param ORM\EntityRepository $repository
 	 *
 	 * @return ORM\Query
 	 *
-	 * @phpstan-param Persistence\ObjectRepository<TEntityClass> $repository
+	 * @phpstan-param ORM\EntityRepository<TEntityClass> $repository
 	 */
-	private function getQuery(Persistence\ObjectRepository $repository): ORM\Query
+	private function getQuery(ORM\EntityRepository $repository): ORM\Query
 	{
 		$query = $this->toQuery($this->doCreateQuery($repository));
 
@@ -170,28 +169,28 @@ abstract class QueryObject
 	}
 
 	/**
-	 * @param Persistence\ObjectRepository $repository
+	 * @param ORM\EntityRepository $repository
 	 *
 	 * @return ORM\QueryBuilder
 	 *
-	 * @phpstan-param Persistence\ObjectRepository<TEntityClass> $repository
+	 * @phpstan-param ORM\EntityRepository<TEntityClass> $repository
 	 */
-	abstract protected function doCreateQuery(Persistence\ObjectRepository $repository): ORM\QueryBuilder;
+	abstract protected function doCreateQuery(ORM\EntityRepository $repository): ORM\QueryBuilder;
 
 	/**
-	 * @param Persistence\ObjectRepository $repository
+	 * @param ORM\EntityRepository $repository
 	 * @param int $hydrationMode
 	 *
 	 * @return ResultSet|mixed[]
 	 *
 	 * @throws Exceptions\QueryException
 	 *
-	 * @phpstan-param Persistence\ObjectRepository<TEntityClass> $repository
+	 * @phpstan-param ORM\EntityRepository<TEntityClass> $repository
 	 *
 	 * @phpstan-return ResultSet<TEntityClass>|mixed[]
 	 */
 	public function fetch(
-		Persistence\ObjectRepository $repository,
+		ORM\EntityRepository $repository,
 		int $hydrationMode = ORM\AbstractQuery::HYDRATE_OBJECT
 	) {
 		try {
@@ -223,19 +222,19 @@ abstract class QueryObject
 	}
 
 	/**
-	 * @param Persistence\ObjectRepository $repository
+	 * @param ORM\EntityRepository $repository
 	 *
 	 * @return object|null
 	 *
 	 * @throws Exceptions\InvalidStateException
 	 * @throws Exceptions\QueryException
 	 *
-	 * @phpstan-param Persistence\ObjectRepository<TEntityClass> $repository
+	 * @phpstan-param ORM\EntityRepository<TEntityClass> $repository
 	 *
 	 * @phpstan-return  TEntityClass
 	 */
 	public function fetchOne(
-		Persistence\ObjectRepository $repository
+		ORM\EntityRepository $repository
 	): ?object {
 		try {
 			$query = $this->getQuery($repository)

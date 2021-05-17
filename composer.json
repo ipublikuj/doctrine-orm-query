@@ -45,7 +45,7 @@
     "nettrine/cache": "^0.3",
     "nettrine/orm": "^0.8",
     "ninjify/nunjuck": "^0.3",
-    "ninjify/qa": "^0.10",
+    "ninjify/qa": "^0.12",
     "pds/skeleton": "~1.0",
     "phpstan/extension-installer": "^1.1",
     "phpstan/phpstan": "^0.12",
