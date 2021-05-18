@@ -17,7 +17,11 @@ class ArticlesRepository
 
 	use Nette\SmartObject;
 
-	/** @var Persistence\ObjectRepository<T>|null */
+	/**
+	 * @var Persistence\ObjectRepository|null
+	 *
+	 * @phpstan-var Persistence\ObjectRepository<T>|null
+	 */
 	public ?Persistence\ObjectRepository $repository = null;
 
 	/** @var Persistence\ManagerRegistry */
@@ -29,7 +33,9 @@ class ArticlesRepository
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @param Queries\FindArticleQuery $queryObject
+	 *
+	 * @return ArticleEntity|null
 	 */
 	public function findOneBy(Queries\FindArticleQuery $queryObject): ?ArticleEntity
 	{
@@ -40,7 +46,9 @@ class ArticlesRepository
 	}
 
 	/**
-	 * @return Persistence\ObjectRepository<T>
+	 * @return Persistence\ObjectRepository
+	 *
+	 * @phpstan-return Persistence\ObjectRepository<T>
 	 */
 	private function getRepository(): Persistence\ObjectRepository
 	{
@@ -52,7 +60,9 @@ class ArticlesRepository
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @param Queries\FindArticleQuery $queryObject
+	 *
+	 * @return ArticleEntity[]
 	 *
 	 * @throws Throwable
 	 */
@@ -64,9 +74,11 @@ class ArticlesRepository
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @param Queries\FindArticleQuery $queryObject
 	 *
-	 * @throws Throwable
+	 * @return DoctrineOrmQuery\ResultSet
+	 *
+	 * @phpstan-return DoctrineOrmQuery\ResultSet<T>
 	 */
 	public function getResultSet(
 		Queries\FindArticleQuery $queryObject

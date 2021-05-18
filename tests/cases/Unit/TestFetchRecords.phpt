@@ -20,7 +20,11 @@ require_once __DIR__ . '/../../libs/queries/FindArticleQuery.php';
 class TestFetchRecords extends BaseTestCase
 {
 
-	/** @var Models\ArticlesRepository<Models\ArticleEntity> */
+	/**
+	 * @var Models\ArticlesRepository
+	 *
+	 * @phpstan-var Models\ArticlesRepository<Models\ArticleEntity>
+	 */
 	private Models\ArticlesRepository $repository;
 
 	/**
