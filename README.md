@@ -12,10 +12,10 @@ Create doctrine data queries and fetch them with [Doctrine2](http://www.doctrine
 
 ## Installation
 
-The best way to install ipub/doctrine-orm-query is using [Composer](http://getcomposer.org/):
+The best way to install **ipub/doctrine-orm-query** is using [Composer](http://getcomposer.org/):
 
 ```sh
-$ composer require ipub/doctrine-orm-query
+composer require ipub/doctrine-orm-query
 ```
 
 ## Documentation

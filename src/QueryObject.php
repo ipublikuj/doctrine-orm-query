@@ -124,13 +124,12 @@ abstract class QueryObject
 	 *
 	 * @phpstan-param ORM\EntityRepository<TEntityClass> $repository
 	 */
-	// phpcs:disable Squiz.Commenting.FunctionComment.InvalidNoReturn
+	// phpcs:ignore Squiz.Commenting.FunctionComment.InvalidNoReturn
 	protected function doCreateCountQuery(
 		ORM\EntityRepository $repository
 	): ORM\QueryBuilder {
 		throw new Exceptions\NotImplementedException('Method doCreateCountQuery is not implemented');
 	}
-	// phpcs:enable Squiz.Commenting.FunctionComment.InvalidNoReturn
 
 	/**
 	 * @param ORM\QueryBuilder $query

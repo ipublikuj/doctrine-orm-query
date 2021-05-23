@@ -49,8 +49,8 @@ use Nette\Utils;
  * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
  * @author         Filip Procházka <filip@prochazka.su>
  *
- * @phpstan-template TEntityClass of object
- * @phpstan-implements IteratorAggregate<int, TEntityClass>
+ * @phpstan-template    TEntityClass of object
+ * @phpstan-implements  IteratorAggregate<int, TEntityClass>
  */
 final class ResultSet implements Countable, IteratorAggregate
 {

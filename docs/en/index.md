@@ -1,5 +1,17 @@
 # Quickstart
 
+Doctrine2 query object is here to help you create custom Doctrine queries. You can use it to filter data, join multiple entities or paginate data.
+
+## Installation
+
+The best way to install **ipub/doctrine-orm-query** is using [Composer](http://getcomposer.org/):
+
+```sh
+composer require ipub/doctrine-orm-query
+```
+
+## Create query object
+
 This Doctrine ORM query is easy to use. Just create you own fetch class which is extending query object class and use it with your repository.
 
 ```php
